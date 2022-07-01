@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Pagination, Table } from "./components";
+import { useAdmin } from "./context/adminContext";
+import { DeleteAllSelectedUsers } from "./context/utils";
 
 function App() {
+  const { adminState, adminDispatch } = useAdmin();
+
+  const handleChange = (e) => {
+    adminDispatch({ type: "SEARCH_USER", payload: e.target.value });
+    const lastIndex =
+      adminState.users?.length >= 10 ? 10 : adminState.users.length % 10;
+    adminDispatch({
+      type: "SET_PAGE",
+      payload: { number: 1, firstIndex: 1, lastIndex },
+    });
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <div className="main-container">
+          <nav className="navbar">
+            <input
+              type="text"
+              value={adminState.searchText}
+              placeholder="Search User"
+              onChange={(e) => handleChange(e)}
+              className="input-search"
+            />
+            <button
+              className="delete-all-btn"
+              onClick={() => DeleteAllSelectedUsers(adminDispatch)}
+            >
+              Delete Selected
+            </button>
+          </nav>
+          <Table />
+        </div>
+        <Pagination />
+      </div>
     </div>
   );
 }
