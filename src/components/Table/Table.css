@@ -1,0 +1,21 @@
+.selected-row {
+  background-color: aquamarine;
+}
+
+.input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  width: max-content;
+  font-size: 1rem;
+}
+
+.action-btns,
+.delete-btn {
+  margin: 0 0.5rem;
+}
+
+.delete-btn,
+.cancel-btn .delete-all-btn {
+  background-color: crimson;
+  color: #fff;
+}
