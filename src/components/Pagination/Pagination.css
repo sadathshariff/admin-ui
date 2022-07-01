@@ -1,0 +1,26 @@
+.paginate-btn {
+  border-radius: 40%;
+  padding: 0.5rem;
+}
+
+.paginate-list {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.pagination-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.side-btns {
+  height: max-content;
+}
+.current-page-btn {
+  background-color: slategrey;
+  color: antiquewhite;
+}
