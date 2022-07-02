@@ -34,7 +34,9 @@ function App() {
               Delete Selected
             </button>
           </nav>
-          <Table />
+          <div className="table-container">
+            <Table />
+          </div>
         </div>
         <Pagination />
       </div>
