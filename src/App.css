@@ -23,6 +23,10 @@ button {
 .main-container {
   display: grid;
 }
+.table-container {
+  margin: 0 auto;
+  padding: 0 2rem;
+}
 
 .navbar {
   display: flex;
@@ -46,5 +50,8 @@ button {
     width: 80%;
     overflow-y: scroll;
     margin: 0 auto;
+  }
+  .input-search {
+    width: 50%;
   }
 }

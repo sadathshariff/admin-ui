@@ -27,8 +27,8 @@ export const getAllRowsSelected = (adminState) => {
   return selectedRows.every((user) => user.isChecked);
 };
 
-export const DeleteAllSelectedUsers = (adminDispatch) => {
-  adminDispatch({ type: "DELETE_ALL" });
+export const DeleteAllSelectedUsers = (users, adminDispatch) => {
+  adminDispatch({ type: "DELETE_ALL", payload: { users } });
 };
 
 export const handlePreviousPage = (
@@ -61,5 +61,24 @@ export const handleNextPage = (
   adminDispatch({
     type: "SET_PAGE",
     payload: { number: currentPage + 1, firstIndex, lastIndex },
+  });
+};
+
+export const handleJumpToFirstPage = (totalUsers, adminDispatch) => {
+  const firstIndex = 1;
+  const lastIndex = 10 <= totalUsers ? 10 : totalUsers;
+  adminDispatch({
+    type: "SET_PAGE",
+    payload: { number: 1, firstIndex, lastIndex },
+  });
+};
+
+export const handleJumpToLastPage = (totalUsers, totalPages, adminDispatch) => {
+  const firstIndex = (totalPages - 1) * 10 + 1;
+  const lastIndex =
+    totalPages * 10 <= totalUsers ? totalPages * 10 : totalUsers;
+  adminDispatch({
+    type: "SET_PAGE",
+    payload: { number: totalPages, firstIndex, lastIndex },
   });
 };

@@ -32,8 +32,7 @@ const AdminProvider = ({ children }) => {
   const users = FilterBySearch(adminState, adminState.users).slice(
     adminState.indexOfFirst - 1,
     adminState.indexOfLast
-  );
-
+  ); 
   return (
     <AdminContext.Provider value={{ adminState, adminDispatch, users }}>
       {children}

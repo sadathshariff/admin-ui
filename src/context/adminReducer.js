@@ -57,19 +57,34 @@ export function adminReducer(state, { type, payload }) {
         indexOfLast: payload.lastIndex,
       };
     case "SELECT_ALL":
-      console.log(
-        payload.filteredUsers.length,
-        state.indexOfLast,
-        state.indexOfFirst
-      );
-      return {
-        ...state,
-        users: state.users?.map((user, index) => {
-          return index >= state.indexOfFirst - 1 && index < state.indexOfLast
+      if (state.searchText) {
+        // let remainingUsers = state.users.map(
+        //   (user, index) => index > payload.filteredUsers.length
+        // );
+        // console.log("Remaining", remainingUsers);
+        let allUsers = payload.filteredUsers?.map((user, index) =>
+          index < state.indexOfLast
             ? { ...user, isChecked: payload.checked }
-            : user;
-        }),
-      };
+            : user
+        );
+        return {
+          ...state,
+          users: state.users.map((user) =>
+            allUsers.find((searched) => searched.id === user.id)
+              ? { ...user, isChecked: payload.checked }
+              : user
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          users: state.users?.map((user, index) => {
+            return index >= state.indexOfFirst - 1 && index < state.indexOfLast
+              ? { ...user, isChecked: payload.checked }
+              : user;
+          }),
+        };
+      }
 
     case "DELETE_ALL":
       return {
