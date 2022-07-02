@@ -4,7 +4,7 @@ import { useAdmin } from "./context/adminContext";
 import { DeleteAllSelectedUsers } from "./context/utils";
 
 function App() {
-  const { adminState, adminDispatch } = useAdmin();
+  const { adminState, adminDispatch, users } = useAdmin();
 
   const handleChange = (e) => {
     adminDispatch({ type: "SEARCH_USER", payload: e.target.value });
@@ -23,13 +23,13 @@ function App() {
             <input
               type="text"
               value={adminState.searchText}
-              placeholder="Search User"
+              placeholder="Search User by Name"
               onChange={(e) => handleChange(e)}
               className="input-search"
             />
             <button
               className="delete-all-btn"
-              onClick={() => DeleteAllSelectedUsers(adminDispatch)}
+              onClick={() => DeleteAllSelectedUsers(users, adminDispatch)}
             >
               Delete Selected
             </button>
