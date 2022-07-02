@@ -1,6 +1,9 @@
 import "./Pagination.css";
 import { useAdmin } from "../../context/adminContext";
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import {
+  handleJumpToFirstPage,
+  handleJumpToLastPage,
   handleNextPage,
   handlePreviousPage,
   handleSelectedPage,
@@ -20,6 +23,13 @@ export const Pagination = () => {
   return (
     <>
       <div className="pagination-div">
+        <button
+          disabled={currentPage === 1 || totalUsers === 0}
+          onClick={() => handleJumpToFirstPage(totalUsers, adminDispatch)}
+          className="margin-lr"
+        >
+          <FaAngleDoubleLeft />
+        </button>
         <button
           onClick={() =>
             handlePreviousPage(
@@ -64,6 +74,15 @@ export const Pagination = () => {
           className="side-btns"
         >
           Next
+        </button>
+        <button
+          disabled={currentPage === totalPages || totalUsers === 0}
+          onClick={() =>
+            handleJumpToLastPage(totalUsers, totalPages, adminDispatch)
+          }
+          className="margin-lr"
+        >
+          <FaAngleDoubleRight />
         </button>
       </div>
     </>

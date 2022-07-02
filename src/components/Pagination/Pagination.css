@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-around;
   list-style-type: none;
+  padding-inline-start: 0;
 }
 
 .pagination-div {
@@ -23,4 +24,10 @@
 .current-page-btn {
   background-color: slategrey;
   color: antiquewhite;
+}
+
+@media screen and (max-width: 760px) {
+  .paginate-list {
+    width: 100%;
+  }
 }
