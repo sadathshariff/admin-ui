@@ -31,66 +31,68 @@ export const Table = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {users.length !== 0 ? (
-            <>
-              {users?.map((user) => (
-                <tr
-                  key={user.id}
-                  className={`${user.isChecked ? "selected-row" : ""}`}
-                >
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={user.isChecked}
-                      onChange={(e) => {
-                        adminDispatch({
-                          type: "SELECTED_ROW",
-                          payload: { checked: e.target.checked, id: user.id },
-                        });
-                      }}
-                    />
-                  </td>
-                  {user.isEdit ? (
-                    <Editable userData={user} />
-                  ) : (
-                    <>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td>{user.role}</td>
-                      <td>
-                        <button
-                          className="action-btns"
-                          onClick={() =>
-                            adminDispatch({
-                              type: "EDIT_USER",
-                              payload: user.id,
-                            })
-                          }
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="action-btns delete-btn"
-                          onClick={() =>
-                            adminDispatch({
-                              type: "DELETE_USER",
-                              payload: user.id,
-                            })
-                          }
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </>
-                  )}
-                </tr>
-              ))}
-            </>
-          ) : (
-            <span>No Users</span>
-          )}
-        </tbody>
+        {users.length !== 0 ? (
+          <tbody>
+            {users?.map((user) => (
+              <tr
+                key={user.id}
+                className={`${user.isChecked ? "selected-row" : ""}`}
+              >
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={user.isChecked}
+                    onChange={(e) => {
+                      adminDispatch({
+                        type: "SELECTED_ROW",
+                        payload: { checked: e.target.checked, id: user.id },
+                      });
+                    }}
+                  />
+                </td>
+                {user.isEdit ? (
+                  <Editable userData={user} />
+                ) : (
+                  <>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.role}</td>
+                    <td>
+                      <button
+                        className="action-btns"
+                        onClick={() =>
+                          adminDispatch({
+                            type: "EDIT_USER",
+                            payload: user.id,
+                          })
+                        }
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="action-btns delete-btn"
+                        onClick={() =>
+                          adminDispatch({
+                            type: "DELETE_USER",
+                            payload: user.id,
+                          })
+                        }
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        ) : (
+          <tbody>
+            <tr>
+              <td>No Users Found</td>
+            </tr>
+          </tbody>
+        )}
       </table>
     </>
   );
