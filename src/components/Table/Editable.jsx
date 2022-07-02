@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./Table.css";
 import { useAdmin } from "../../context/adminContext";
 export const Editable = ({ userData }) => {
   const [userEdit, setUserEdit] = useState(userData);
