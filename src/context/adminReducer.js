@@ -58,10 +58,6 @@ export function adminReducer(state, { type, payload }) {
       };
     case "SELECT_ALL":
       if (state.searchText) {
-        // let remainingUsers = state.users.map(
-        //   (user, index) => index > payload.filteredUsers.length
-        // );
-        // console.log("Remaining", remainingUsers);
         let allUsers = payload.filteredUsers?.map((user, index) =>
           index < state.indexOfLast
             ? { ...user, isChecked: payload.checked }
